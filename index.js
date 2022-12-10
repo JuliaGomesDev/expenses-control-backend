@@ -3,6 +3,7 @@ import admin from 'firebase-admin'
 import { transactionsRouter } from './transactions/routes.js'
 
 const app = express()
+const port = process.env.PORT || 3000
 
 admin.initializeApp({
   credential: admin.credential.cert('serviceAccountKey.json')
@@ -25,6 +26,4 @@ app.use((request, response, next) => {
 
 app.use('/transactions', transactionsRouter)
 
-app.listen(3000, () =>
-  console.log('API rest iniciada em http://localhost:3000')
-)
+app.listen(port, () => console.log(`API rest iniciada na porta ${port}`))
